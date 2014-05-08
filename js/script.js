@@ -22,13 +22,22 @@ $(document).ready(function() {
 							$.each(instanceNames, function(index2, instanceName) {
 								htmlInstanceName = '';
 								if (instanceName == currenteInstanceName) {
-									htmlInstanceName = '<li class="active">' + currenteInstanceName + '</li>';
+									htmlInstanceName = '<li class="active">' + currenteInstanceName + '&nbsp;<img src="../img/refresh.png" height="12" class="btnRefresh" /> </li> ';
 									
 								} else {
 									htmlInstanceName = '<li class="inactive">' + instanceName + '</li>';
 								}
-								
+
 								$('li#instanceName ul').append(htmlInstanceName);
+							});
+							
+							// Apaga cookie e dá refresh na página
+							$('.btnRefresh').bind('click', function() {						
+								chrome.cookies.remove({"url": tab.url, "name": "JSESSIONID"}, function() {
+									chrome.tabs.reload(function() {
+										setTimeout(function() { location.href = location.href; }, 3000);
+									});
+								});
 							});
 							
 						});
@@ -41,7 +50,7 @@ $(document).ready(function() {
         }
 	});
 });
-
+	
 function doConfigSystem(url) {
 
 	// Instâncias do AssineAbril
