@@ -13,7 +13,7 @@ var ARGOS = {
         ],
         CLUBE:[
             'JBHOM04',
-			'JBHOM09'
+            'JBHOM09'
         ],
         ASSINE:[
             'JBHOM01',
@@ -23,7 +23,7 @@ var ARGOS = {
         ],
         SERVICOSASS:[
             'JBHOM05',
-			'JBHOM10'
+            'JBHOM10'
         ]
     },
 
@@ -33,8 +33,8 @@ var ARGOS = {
             'JBPRD34'
         ],
         CLUBE:[
-			'JBPRD04',
-			'JBPRD09'
+            'JBPRD04',
+            'JBPRD09'
         ],
         ASSINE:[
             'JBPRD01',
@@ -46,7 +46,7 @@ var ARGOS = {
         ],
         SERVICOSASS:[
             'JBPRD05',
-			'JBPRD10'
+            'JBPRD10'
         ]
     },
 
