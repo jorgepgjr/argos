@@ -1,7 +1,11 @@
 
 $(document).ready(function() {
+    getInstance();
+});
 
-	chrome.windows.getCurrent(function(win) {
+function getInstance(){
+
+    chrome.windows.getCurrent(function(win) {
 
 		try {
 			chrome.tabs.getAllInWindow(win.id, function(tabs) {
@@ -47,7 +51,8 @@ $(document).ready(function() {
             console.debug(e);
         }
 	});
-});
+
+}
 
 function doConfigSystem(url) {
 
