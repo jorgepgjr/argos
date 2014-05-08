@@ -31,11 +31,6 @@ $(document).ready(function() {
 								$('li#instanceName ul').append(htmlInstanceName);
 							});
 							
-							// Função para trocar de instancia
-							$('li#instanceName ul li.inactive').click(function() {
-								
-							});
-							
 						});
 					}
 				});					
@@ -53,8 +48,9 @@ function doConfigSystem(url) {
 	if (url.indexOf('assine.abril') > 0) {
 		if (url.toLowerCase().indexOf('homolog') > 0 || url.toLowerCase().indexOf('jbhom') > 0 ) {
 			instanceNames[0] = 'JBHOM01';
-			instanceNames[1] = 'JBHOM06';
-			instanceNames[2] = 'JBHOM07';
+			instanceNames[1] = 'JBHOM02';
+			instanceNames[2] = 'JBHOM06';
+			instanceNames[3] = 'JBHOM07';
 		} else {	
 			instanceNames[0] = 'JBPRD01';
 			instanceNames[1] = 'JBPRD02';
