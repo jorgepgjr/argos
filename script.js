@@ -1,4 +1,5 @@
 var instanceNames = new Array();
+var isSacFrame = false;
 
 $(document).ready(function() {
 
@@ -12,9 +13,14 @@ $(document).ready(function() {
 					
 						doConfigSystem(tab.url);
 						
-						var title = tab.title;
+						var title = tab.title,
+							url = tab.url;
 						
-						chrome.cookies.get({"url": tab.url, "name": "JSESSIONID"}, function(cookie) {
+						if(isSacFrame){
+							url = url.concat('abrilSac');
+						}
+						
+						chrome.cookies.get({"url": url, "name": "JSESSIONID"}, function(cookie) {
 							var currenteInstanceName = cookie.value.split(".")[1]						
 						
 							$('li#title').html(title);
@@ -40,6 +46,8 @@ $(document).ready(function() {
             console.debug(e);
         }
 	});
+	
+	$('#refresh').on('click',clearCache);
 });
 
 function doConfigSystem(url) {
@@ -69,7 +77,13 @@ function doConfigSystem(url) {
 			instanceNames[2] = 'JBHOM11';
 			instanceNames[3] = 'JBHOM23';
 		} else {	
+			instanceNames[0] = 'JBPRD23';
+			instanceNames[1] = 'JBPRD34';
 
+		}
+		
+		if(url.indexOf('abrilSac') < 0){
+			isSacFrame = true;
 		}
 	}
 	
@@ -94,4 +108,9 @@ function doConfigSystem(url) {
 		} else {	
 		}
 	}
+}
+
+function clearCache(event){
+	event.preventDefault();
+	console.log('teste');
 }
