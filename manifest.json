@@ -6,7 +6,7 @@
   "version": "1.0",
   "permissions": ["tabs", "cookies", "<all_urls>"],
   "browser_action": {
-	"default_icon": "ico.png",
-    "default_popup": "popup.html"
+	"default_icon": "img/ico.png",
+    "default_popup": "html/popup.html"
   }
 }
