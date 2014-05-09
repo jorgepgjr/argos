@@ -91,6 +91,11 @@ function doConfigUrl(oldUrl) {
 
 	newUrl = '';
 	
+	/*Criei essa verificação devido ao uso do elemento frame no index.html do Sac.
+	 * Sendo assim, a menos que o complemento '/abrilSac' seja informado na url do site,
+	 * não será possível recuperar o cookie e verificar a instância onde o sistema esta alocado.
+	 */
+	
     if (oldUrl.indexOf('sac.abril') > 0 && oldUrl.indexOf('abrilSac') < 0){
     	newUrl = oldUrl.concat('abrilSac');
     }else{
