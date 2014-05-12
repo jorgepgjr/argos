@@ -13,3 +13,5 @@ li.space { height: 10px; }
 li#favs, li#instances { font-size: 14px; font-weight: bold; }
 
 li#title { font-size: 14px; font-weight: bold; color: green; }
+
+.btnRefresh { cursor: pointer; }
