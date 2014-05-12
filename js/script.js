@@ -22,8 +22,8 @@ $(document).ready(function() {
 							
 							$.each(instanceNames, function(index2, instanceName) {
 								htmlInstanceName = '';
-								if (instanceName == currenteInstanceName) {
-									htmlInstanceName = '<li class="active">' + currenteInstanceName + '&nbsp;<img src="../img/refresh.png" height="12" class="btnRefresh" /> </li> ';
+								if (instanceName == currentInstanceName) {
+									htmlInstanceName = '<li class="active">' + currentInstanceName + '&nbsp;<img src="../img/refresh.png" height="12" class="btnRefresh" /> </li> ';
 									
 								} else {
 									htmlInstanceName = '<li class="inactive">' + instanceName + '</li>';
@@ -32,7 +32,6 @@ $(document).ready(function() {
 							        $('li#instanceName ul').append(htmlInstanceName);
 
 								});
-							}
 
 							// Apaga cookie e dá refresh na página
 							$('.btnRefresh').bind('click', function() {						
