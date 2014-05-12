@@ -1,4 +1,15 @@
 $(function() {
+
+	chrome.windows.getCurrent(function(win) {
+		chrome.tabs.getAllInWindow(win.id, function(tabs) {
+			$.each(tabs, function(index, tab) {
+				if (tab && tab.active && tab.url.indexOf('abril') > 0) {
+					$('li#title').html(tab.title);
+				}
+			});
+		});
+	});
+
     $( "#tabs" ).tabs();
 
     // fix the classes

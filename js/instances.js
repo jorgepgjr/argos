@@ -1,6 +1,9 @@
 
 $(document).ready(function() {
-    getInstance();
+	$( "#tabs" ).on( "tabsbeforeactivate", function( event, ui ) {
+		getInstance();
+	} );
+	getInstance();
 });
 
 function getInstance(){
@@ -15,12 +18,10 @@ function getInstance(){
 
 						var instanceNames = doConfigSystem(tab.url);
 
-						var title = tab.title;
+						var url = doConfigUrl(tab.url);
 
-						chrome.cookies.get({"url": tab.url, "name": "JSESSIONID"}, function(cookie) {
+						chrome.cookies.get({"url": url, "name": "JSESSIONID"}, function(cookie) {
 							var currentInstanceName = cookie.value.split(".")[1]
-
-							$('li#title').html(title);
 
                             instanceFound = false;
                             if ( instanceNames.length > 0){
@@ -28,7 +29,7 @@ function getInstance(){
 									htmlInstanceName = '';
 
                                     if (instanceName == currentInstanceName) {
-										htmlInstanceName = '<li class="active">' + currentInstanceName + '</li>';
+										htmlInstanceName = '<li class="active">' + currentInstanceName + '&nbsp;<img src="../img/refresh.png" height="12" class="btnRefresh" /> </li> ';
                                         instanceFound = true;
 
 									} else {
@@ -42,6 +43,15 @@ function getInstance(){
                             if ( !instanceFound ){
                                 $('li#instanceName ul').append('<li class="active">' + currentInstanceName + '</li>');
                             }
+							// Apaga cookie e dá refresh na página
+							$('.btnRefresh').bind('click', function() {						
+								chrome.cookies.remove({"url": tab.url, "name": "JSESSIONID"}, function() {
+									chrome.tabs.reload(function() {
+										setTimeout(function() { location.href = location.href; }, 3000);
+									});
+								});
+							});
+							
 						});
 					}
 				});
@@ -53,7 +63,7 @@ function getInstance(){
 	});
 
 }
-
+	
 function doConfigSystem(url) {
 
     instanceNames = new Array();
@@ -88,4 +98,22 @@ function doConfigSystem(url) {
     }
 
 	return instanceNames;
+}
+
+function doConfigUrl(oldUrl) {
+
+	newUrl = '';
+	
+	/*Criei essa verificação devido ao uso do elemento frame no index.html do Sac.
+	 * Sendo assim, a menos que o complemento '/abrilSac' seja informado na url do site,
+	 * não será possível recuperar o cookie e verificar a instância onde o sistema esta alocado.
+	 */
+	
+    if (oldUrl.indexOf('sac.abril') > 0 && oldUrl.indexOf('abrilSac') < 0){
+    	newUrl = oldUrl.concat('abrilSac');
+    }else{
+    	newUrl = oldUrl;
+    }
+
+	return newUrl;
 }
