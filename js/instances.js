@@ -1,10 +1,11 @@
 
 $(document).ready(function() {
-	$( "#tabs" ).on( "tabsbeforeactivate", function( event, ui ) {
-		getInstance();
-	} );
-	getInstance();
+	tabInstanciasActivate();
 });
+
+function tabInstanciasActivate(){
+	getInstance();
+}
 
 function getInstance(){
 
