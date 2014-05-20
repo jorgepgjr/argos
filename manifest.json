@@ -1,7 +1,7 @@
 ﻿{
   "manifest_version": 2,
 
-  "name": "Argo",
+  "name": "Argos",
   "description": "Utilidades para desenvolvedores da Editora Abril",
   "version": "1.0",
   "permissions": ["tabs", "cookies", "<all_urls>"],

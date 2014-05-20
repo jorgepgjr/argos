@@ -1,7 +1,15 @@
 
 $(document).ready(function() {
+	tabInstanciasActivate();
+});
 
-	chrome.windows.getCurrent(function(win) {
+function tabInstanciasActivate(){
+	getInstance();
+}
+
+function getInstance(){
+
+    chrome.windows.getCurrent(function(win) {
 
 		try {
 			chrome.tabs.getAllInWindow(win.id, function(tabs) {
@@ -11,28 +19,31 @@ $(document).ready(function() {
 
 						var instanceNames = doConfigSystem(tab.url);
 
-						var title = tab.title;
-						
 						var url = doConfigUrl(tab.url);
 
 						chrome.cookies.get({"url": url, "name": "JSESSIONID"}, function(cookie) {
 							var currentInstanceName = cookie.value.split(".")[1]
 
-							$('li#title').html(title);
-							
-							$.each(instanceNames, function(index2, instanceName) {
-								htmlInstanceName = '';
-								if (instanceName == currentInstanceName) {
-									htmlInstanceName = '<li class="active">' + currentInstanceName + '&nbsp;<img src="../img/refresh.png" height="12" class="btnRefresh" /> </li> ';
-									
-								} else {
-									htmlInstanceName = '<li class="inactive">' + instanceName + '</li>';
-								}
+                            instanceFound = false;
+                            if ( instanceNames.length > 0){
+								$.each(instanceNames, function(index2, instanceName) {
+									htmlInstanceName = '';
 
+                                    if (instanceName == currentInstanceName) {
+										htmlInstanceName = '<li class="active">' + currentInstanceName + '&nbsp;<img src="../img/refresh.png" height="12" class="btnRefresh" /> </li> ';
+                                        instanceFound = true;
+
+									} else {
+										htmlInstanceName = '<li class="inactive">' + instanceName + '</li>';
+									}
 							        $('li#instanceName ul').append(htmlInstanceName);
 
 								});
+							}
 
+                            if ( !instanceFound ){
+                                $('li#instanceName ul').append('<li class="active">' + currentInstanceName + '</li>');
+                            }
 							// Apaga cookie e dá refresh na página
 							$('.btnRefresh').bind('click', function() {						
 								chrome.cookies.remove({"url": tab.url, "name": "JSESSIONID"}, function() {
@@ -51,7 +62,8 @@ $(document).ready(function() {
             console.debug(e);
         }
 	});
-});
+
+}
 	
 function doConfigSystem(url) {
 
