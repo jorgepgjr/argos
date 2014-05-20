@@ -1,10 +1,11 @@
 ﻿{
   "manifest_version": 2,
 
-  "name": "Argo",
+  "name": "Argos",
   "description": "Utilidades para desenvolvedores da Editora Abril",
   "version": "1.0",
   "permissions": ["tabs", "cookies", "<all_urls>"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "browser_action": {
 	"default_icon": "img/ico.png",
     "default_popup": "html/popup.html"
