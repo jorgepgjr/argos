@@ -10,8 +10,10 @@ li#instanceName ul li { font-weight: none; }
 li.clear-line { clear: both; }
 
 li.space { height: 10px; }
-li#favs, li#instances { font-size: 14px; font-weight: bold; }
-
+li.spaceLine { height:1px; background:#C0C0C0; margin: 5px 0px; }
+li.subTitle { font-size: 14px; font-weight: bold; }
 li#title { font-size: 14px; font-weight: bold; color: green; }
 
 .btnRefresh { cursor: pointer; }
+
+a { text-decoration: none; } 
