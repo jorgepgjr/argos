@@ -10,19 +10,7 @@ $(function() {
 		});
 	});
 
-    $( "#tabs" ).tabs({
-		beforeActivate: 
-			function( event, ui ) {
-				idTab = ui.newTab.attr('id');
-				switch (idTab){
-					case 'tabInstancias':
-						tabInstanciasActivate();
-						break;
-					case 'tabFavoritos':
-						break;
-				}
-			}
-	});
+    $( "#tabs" ).tabs();
 
     // fix the classes
     $( ".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *" )
